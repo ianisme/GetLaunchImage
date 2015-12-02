@@ -14,6 +14,9 @@
 {
     NSString *defaultImageName = @"LaunchImage";
     NSInteger osVersion = floor([[[UIDevice currentDevice] systemVersion] floatValue])*100;
+    if (osVersion > 800){
+        osVersion = 800;
+    }
     NSInteger screenHeight = CGRectGetHeight([UIScreen mainScreen].bounds);
     // 3.5inch
     if (screenHeight < 568) {
