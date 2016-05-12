@@ -1,6 +1,6 @@
 //
 //  GetLaunchImage.m
-//  IAN-RTLabel
+//  IAN
 //
 //  Created by ian on 15/10/12.
 //  Copyright © 2015年 ian. All rights reserved.
@@ -14,28 +14,32 @@
 {
     NSString *defaultImageName = @"LaunchImage";
     NSInteger osVersion = floor([[[UIDevice currentDevice] systemVersion] floatValue])*100;
-    if (osVersion > 800){
-        osVersion = 800;
-    }
+    
     NSInteger screenHeight = CGRectGetHeight([UIScreen mainScreen].bounds);
     // 3.5inch
     if (screenHeight < 568) {
-        // >iOS7
+        
         if (osVersion >= 700) {
-            defaultImageName = [NSString stringWithFormat:@"%@-%zd",defaultImageName,osVersion];
+            defaultImageName = [NSString stringWithFormat:@"%@-700",defaultImageName];
+        } else {
+            defaultImageName = [NSString stringWithFormat:@"%@",defaultImageName];
         }
-        // <iOS7
+        
     }
-    // 4.0inch and 4.7inch
-    else if(screenHeight < 736){
-        // >iOS7
+    // 4.0inch
+    else if(screenHeight < 667){
+
         if (osVersion >= 700) {
-            defaultImageName = [NSString stringWithFormat:@"%@-%zd-%zdh",defaultImageName,osVersion,screenHeight];
+            defaultImageName = [NSString stringWithFormat:@"%@-700-568h",defaultImageName];
+        } else {
+            defaultImageName = [NSString stringWithFormat:@"%@-568h",defaultImageName];
         }
-        // <iOS7
-        else {
-            defaultImageName = [NSString stringWithFormat:@"%@-%zdh",defaultImageName,screenHeight];
-        }
+    }
+    // 4,7inch
+    else if (screenHeight < 736) {
+    
+        defaultImageName = [NSString stringWithFormat:@"%@-800-667h",defaultImageName];
+    
     }
     // 5.5inch
     else{
@@ -53,7 +57,7 @@
             default:
                 break;
         }
-        defaultImageName = [NSString stringWithFormat:@"%@-%zd-%@-%zdh",defaultImageName,osVersion,orientation,screenHeight];
+        defaultImageName = [NSString stringWithFormat:@"%@-800-%@-736h",defaultImageName,orientation];
     }
     return [UIImage imageNamed:defaultImageName];
 }

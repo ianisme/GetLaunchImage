@@ -286,7 +286,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ianisme.GetLaunchImage-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "44ee0b50-48d4-4a9e-afd9-9e403d9aa2e0";
 			};
 			name = Debug;
 		};
@@ -302,7 +302,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ianisme.GetLaunchImage-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "44ee0b50-48d4-4a9e-afd9-9e403d9aa2e0";
 			};
 			name = Release;
 		};
@@ -325,6 +325,7 @@
 				3CD272491C8B1D9D0048DC12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

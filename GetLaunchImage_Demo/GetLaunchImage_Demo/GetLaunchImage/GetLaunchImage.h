@@ -1,6 +1,6 @@
 //
 //  GetLaunchImage.h
-//  IAN-RTLabel
+//  IAN
 //
 //  Created by ian on 15/10/12.
 //  Copyright © 2015年 ian. All rights reserved.
