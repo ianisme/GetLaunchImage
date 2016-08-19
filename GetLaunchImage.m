@@ -1,6 +1,6 @@
 //
 //  GetLaunchImage.m
-//  IAN-RTLabel
+//  IAN
 //
 //  Created by ian on 15/10/12.
 //  Copyright © 2015年 ian. All rights reserved.
@@ -12,50 +12,31 @@
 
 + (UIImage *)getTheLaunchImage
 {
-    NSString *defaultImageName = @"LaunchImage";
-    NSInteger osVersion = floor([[[UIDevice currentDevice] systemVersion] floatValue])*100;
-    if (osVersion > 800){
-        osVersion = 800;
+    CGSize viewSize = [UIScreen mainScreen].bounds.size;
+    
+    NSString *viewOrientation = nil;
+    if (([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortraitUpsideDown) || ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait)) {
+        viewOrientation = @"Portrait";
+    } else {
+        viewOrientation = @"Landscape";
     }
-    NSInteger screenHeight = CGRectGetHeight([UIScreen mainScreen].bounds);
-    // 3.5inch
-    if (screenHeight < 568) {
-        // >iOS7
-        if (osVersion >= 700) {
-            defaultImageName = [NSString stringWithFormat:@"%@-%zd",defaultImageName,osVersion];
-        }
-        // <iOS7
-    }
-    // 4.0inch and 4.7inch
-    else if(screenHeight < 736){
-        // >iOS7
-        if (osVersion >= 700) {
-            defaultImageName = [NSString stringWithFormat:@"%@-%zd-%zdh",defaultImageName,osVersion,screenHeight];
-        }
-        // <iOS7
-        else {
-            defaultImageName = [NSString stringWithFormat:@"%@-%zdh",defaultImageName,screenHeight];
+    
+
+    NSString *launchImage = nil;
+    
+    NSArray* imagesDict = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"UILaunchImages"];
+    for (NSDictionary* dict in imagesDict)
+    {
+        CGSize imageSize = CGSizeFromString(dict[@"UILaunchImageSize"]);
+        
+        if (CGSizeEqualToSize(imageSize, viewSize) && [viewOrientation isEqualToString:dict[@"UILaunchImageOrientation"]])
+        {
+            launchImage = dict[@"UILaunchImageName"];
         }
     }
-    // 5.5inch
-    else{
-        NSString *orientation = @"";
-        switch ([[UIApplication sharedApplication] statusBarOrientation]) {
-            case UIInterfaceOrientationUnknown:
-            case UIInterfaceOrientationPortrait:
-            case UIInterfaceOrientationPortraitUpsideDown:
-                orientation = @"Portrait";
-                break;
-            case UIInterfaceOrientationLandscapeLeft:
-            case UIInterfaceOrientationLandscapeRight:
-                orientation = @"Landscape";
-                break;
-            default:
-                break;
-        }
-        defaultImageName = [NSString stringWithFormat:@"%@-%zd-%@-%zdh",defaultImageName,osVersion,orientation,screenHeight];
-    }
-    return [UIImage imageNamed:defaultImageName];
+
+    return [UIImage imageNamed:launchImage];
+
 }
 
 @end
