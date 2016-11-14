@@ -1,4 +1,5 @@
-# GetLaunchImage
+# GetLaunchImage [![star this repo](http://github-svg-buttons.herokuapp.com/star.svg?user=ianisme&repo=GetLaunchImage&style=flat&background=1081C1)](https://github.com/ianisme/GetLaunchImage) [![fork this repo](http://github-svg-buttons.herokuapp.com/fork.svg?user=ianisme&repo=GetLaunchImage&style=flat&background=1081C1)](https://github.com/ianisme/GetLaunchImage/fork)
+
 获取启动图片的方法
 
 |iOS|Display|Image Name|
